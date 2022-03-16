@@ -1,0 +1,110 @@
+﻿@model Tuan04_TonQuocBinh.Models.Sach
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Sach</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.maloai)*@
+            Mã loại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maloai)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tensach)*@
+             Tên sách: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tensach)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.hinh)*@
+            <div class="">Hình: </div>
+        </dt>
+
+        <dd>
+            <img src="@Model.hinh" width="300" height="400"/>
+                 @*@Html.DisplayFor(model => model.hinh)*@
+            @*<img src="@Model.hinh" id="pictureUpload" />
+
+
+            @section upload
+{
+                <script>
+
+                    $(function () {
+                        $('#btnUpload').click(function () {
+                            $('#fileUpload').trigger('click');
+                        });
+                    });
+                    $('#fileUpload').change(function () {
+                        if (window.FormData !== undefined) {
+                            var fileUpload = $('#fileUpload').get(0);
+                            var files = fileUpload.files;
+                            var formData = new FormData();
+                            formData.append('file', files[0]);
+                            $.ajax(
+                                {
+                                    type: 'POST',
+                                    url: '/Sach/ProcessUpload',
+                                    contentType: false,
+                                    processData: false,
+                                    data: formData,
+                                    success: function (urlImage) {
+                                        $('#pictureUpload').attr('src', urlImage); $('#hinh').val(urlImage);
+                                    },
+                                    error: function (err) {
+                                        alert('Error ', err.statusText);
+                                    }
+                                });
+                        }
+                    });
+                </script>
+            }*@
+        </dd>
+
+<dt>
+    @*@Html.DisplayNameFor(model => model.giaban)*@
+    Giá bán:
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.giaban)
+</dd>
+
+<dt>
+    @*@Html.DisplayNameFor(model => model.ngaycapnhat)*@
+    Ngày cập nhật:
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.ngaycapnhat)
+</dd>
+
+<dt>
+    @*@Html.DisplayNameFor(model => model.soluongton)*@
+    Số lượng tồn
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.soluongton)
+</dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.masach }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
